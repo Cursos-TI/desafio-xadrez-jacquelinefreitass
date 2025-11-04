@@ -1,0 +1,147 @@
+#include <stdio.h>
+
+#define CASAS_A_MOVER 4
+
+void moverTorreRecursivo(int casasRestantes, char* direcao);
+void moverBispoRecursivo(int casasRestantes, char* dirVertical, char* dirHorizontal);
+void moverCavaloComLoopsComplexos();
+void moverBispoComLoopsAninhados(int totalCasas);
+
+int main() {
+
+    printf("### INÍCIO DA SIMULAÇÃO DE MOVIMENTOS AVANÇADOS ###\n\n");
+    printf("--- Movimento da TORRE (Recursivo) ---\n");
+    
+    printf("Direção: Cima\n");
+    moverTorreRecursivo(CASAS_A_MOVER, "Cima");
+    printf("\n"); 
+
+    printf("Direção: Baixo\n");
+    moverTorreRecursivo(CASAS_A_MOVER, "Baixo");
+    printf("\n");
+
+    printf("Direção: Esquerda\n");
+    moverTorreRecursivo(CASAS_A_MOVER, "Esquerda");
+    printf("\n");
+
+    printf("Direção: Direita\n");
+    moverTorreRecursivo(CASAS_A_MOVER, "Direita");
+    printf("\n");
+
+    printf("--- Movimento do BISPO (Recursivo) ---\n");
+
+    printf("Direção: Cima e Direita\n");
+    moverBispoRecursivo(CASAS_A_MOVER, "Cima", "Direita");
+    printf("\n");
+
+    printf("Direção: Cima e Esquerda\n");
+    moverBispoRecursivo(CASAS_A_MOVER, "Cima", "Esquerda");
+    printf("\n");
+
+    printf("Direção: Baixo e Direita\n");
+    moverBispoRecursivo(CASAS_A_MOVER, "Baixo", "Direita");
+    printf("\n");
+
+    printf("Direção: Baixo e Esquerda\n");
+    moverBispoRecursivo(CASAS_A_MOVER, "Baixo", "Esquerda");
+    printf("\n");
+
+    printf("--- Movimento da RAINHA (Recursivo) ---\n");
+    
+    printf("Movimentos retos (como a Torre):\n");
+    moverTorreRecursivo(CASAS_A_MOVER, "Cima");
+    moverTorreRecursivo(CASAS_A_MOVER, "Baixo");
+    
+    printf("\nMovimentos diagonais (como o Bispo):\n");
+    moverBispoRecursivo(CASAS_A_MOVER, "Cima", "Direita");
+    moverBispoRecursivo(CASAS_A_MOVER, "Baixo", "Esquerda");
+    
+    printf("\n");
+
+    printf("--- Movimento do CAVALO (Loops Complexos) ---\n");
+    moverCavaloComLoopsComplexos();
+    printf("\n");
+
+    printf("--- Movimento do BISPO (Loops Aninhados) ---\n");
+    moverBispoComLoopsAninhados(CASAS_A_MOVER);
+    printf("\n");
+
+
+    printf("### FIM DA SIMULAÇÃO ###\n");
+    return 0; 
+}
+
+void moverTorreRecursivo(int casasRestantes, char* direcao) {
+   
+    if (casasRestantes <= 0) {
+        return; 
+    }
+
+    printf("%s\n", direcao);
+    moverTorreRecursivo(casasRestantes - 1, direcao);
+}
+
+void moverBispoRecursivo(int casasRestantes, char* dirVertical, char* dirHorizontal) {
+    
+    if (casasRestantes <= 0) {
+        return;
+    }
+   
+    printf("%s e %s\n", dirVertical, dirHorizontal);
+    moverBispoRecursivo(casasRestantes - 1, dirVertical, dirHorizontal);
+}
+
+void moverCavaloComLoopsComplexos() {
+    const int maxPassosVerticais = 2;
+    const int maxPassosHorizontais = 1;
+    int passoVertical, passoHorizontal;
+
+    printf("Movimento em 'L': 2 Cima, 1 Direita\n");
+
+    for (passoVertical = 1; passoVertical <= maxPassosVerticais; passoVertical++) {
+        
+        printf("Cima\n");
+
+        if (passoVertical < maxPassosVerticais) {
+            
+            continue; 
+        }
+
+        for (passoHorizontal = 1; passoHorizontal <= maxPassosHorizontais; passoHorizontal++) {
+            printf("Direita\n");
+            
+            break; 
+        }
+        break;
+    }
+}
+
+void moverBispoComLoopsAninhados(int totalCasas) {
+    int v, h;
+
+    printf("Movimento (Loops): Cima e Direita\n");
+    
+    for (v = 1; v <= totalCasas; v++) {
+        
+        for (h = 1; h <= totalCasas; h++) {
+            
+           
+            if (v == h) {
+                printf("Cima (passo %d) e Direita (passo %d)\n", v, h);
+                
+                break;
+            }
+        }
+    }
+    printf("\n");
+
+    printf("Movimento (Loops): Baixo e Esquerda\n");
+    for (v = 1; v <= totalCasas; v++) {      
+        for (h = 1; h <= totalCasas; h++) {  
+            if (v == h) {
+                printf("Baixo (passo %d) e Esquerda (passo %d)\n", v, h);
+                break; 
+            }
+        }
+    }
+}
