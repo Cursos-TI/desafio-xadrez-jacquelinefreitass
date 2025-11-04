@@ -1,0 +1,69 @@
+#include <stdio.h>
+
+int main() {
+
+    const int CASAS_TORRE = 5;
+    const int CASAS_BISPO = 5;
+    const int CASAS_RAINHA = 8;
+    
+   
+    const int CAVALO_VERTICAL = 2;   
+    const int CAVALO_HORIZONTAL = 1; 
+
+    
+    int i, j, k;
+
+    printf("### SIMULAÇÃO DE MOVIMENTOS DE XADREZ ###\n\n");
+
+    
+    printf("--- Movimento da TORRE (Loop 'for') ---\n");
+    for (i = 0; i < CASAS_TORRE; i++) {
+        printf("Direita\n");
+    }
+    printf("\n"); 
+
+   
+    printf("--- Movimento do BISPO (Loop 'while') ---\n");
+    j = 0; 
+    while (j < CASAS_BISPO) {
+        printf("Cima, Direita\n");
+        j++; 
+    }
+    printf("\n"); 
+
+    
+    printf("--- Movimento da RAINHA (Loop 'do-while') ---\n");
+    k = 0;
+    do {
+        printf("Esquerda\n");
+        k++;
+    } while (k < CASAS_RAINHA); 
+    printf("\n"); 
+    printf("--- Movimento do CAVALO (Loops Aninhados) ---\n");
+
+    for (int fase = 1; fase <= 2; fase++) {
+        
+        if (fase == 1) {
+            
+            int passos_verticais = 0;
+            while (passos_verticais < CAVALO_VERTICAL) {
+                printf("Baixo\n");
+                passos_verticais++;
+            }
+            
+        } else {
+            
+
+            int passos_horizontais = 0;
+            while (passos_horizontais < CAVALO_HORIZONTAL) {
+                printf("Esquerda\n");
+                passos_horizontais++;
+            }
+        }
+    }
+
+    printf("\n"); 
+    printf("### FIM DA SIMULAÇÃO ###\n");
+
+    return 0; 
+}
